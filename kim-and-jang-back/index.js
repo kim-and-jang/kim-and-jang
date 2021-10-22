@@ -3,6 +3,7 @@
 const express = require('express'); //express를 설치했기 때문에 가져올 수 있다.
 const app = express();
 var request = require('request');
+var cheerio = require('cheerio');
 var headers = {
     'PRIVATE-TOKEN': 'Ycz9FbDkyxsD5i-c2_TX',
 };
@@ -19,11 +20,20 @@ function callback(error, response, body) {
 }
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
     request(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            console.log(body);
-            //res.send(body);
+            let $ = cheerio.load(body);
+            let commitArr = [];
+            $('.commit-detail').map(function (idx, data) {
+                let commitMsg = $(data).find('.item-title').text();
+                let author = $(data).find('.commit-author-link').text();
+                let newData = {
+                    commitMsg,
+                    author,
+                };
+                if (!commitMsg.includes('Merge')) commitArr.push(newData);
+            });
+            res.send(commitArr);
         }
     });
 });
