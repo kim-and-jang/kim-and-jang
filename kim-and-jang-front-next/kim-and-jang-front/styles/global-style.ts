@@ -11,27 +11,57 @@ export const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar {
         display: none;
     }
-    html{
-        font-size: 11px;
-        -webkit-text-size-adjust: none;
-        font-family: -apple-system,BlinkMacSystemFont,helvetica,Apple SD Gothic Neo,sans-serif;       
-        font-display: fallback;
-        ${media.tablet}{
-            font-size: 10px;
-        }
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+    body{
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans KR", sans-serif;
+    word-break: keep-all;
+    word-wrap: break-word;
+    p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select {
+      margin: 0;
+      padding: 0;
+      word-break: keep-all;
+      word-wrap: break-word;
     }
-    button {
-        background: none;
-        padding: 0;
-        border: none;
-        cursor: pointer;
-        &:disabled {
-            cursor: default;
-            fill: #f2f3f4;
-        }
+    input, textarea, select, button, table {
+      font-family: "Noto Sans KR", sans-serif;
+      outline:none;
     }
+    fieldset,
+    img {
+      border: 0;
+    }
+    ol,
+    ul {
+      list-style: none;
+    }
+    address,
+    em {
+      font-style: normal;
+    }
+    a {
+      text-decoration: none;
+    }
+    a:active,
+    a:focus,
+    a:hover {
+      text-decoration: none;
+    }
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    width: 6px;
+    border-radius: 8px / 8px;
+    border: 0;
+    opacity: 1;
+  }
 
     .pc-tablet-only {
         display: block;
