@@ -1,8 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import Layout from "../components/Layout";
+import Layout from "@components/Layout";
 import styled from "styled-components";
 
 const Title = styled.h1`
@@ -12,7 +11,7 @@ const Title = styled.h1`
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
+    <div>
       <Layout>
         <Title>Kim And Jang</Title>
       </Layout>
