@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-var bodyParser = require('body-parser');
+var cheerio = require('cheerio');
 var request = require('request');
 var headers = {
     'PRIVATE-TOKEN': 'Ycz9FbDkyxsD5i-c2_TX',
@@ -13,10 +13,22 @@ var options = {
     headers: headers,
 };
 
-function callback(error, response, body) {
-    if (!error && response.statusCode == 200) {
-        console.log(body);
-    }
-}
-
-request(options, callback);
+router.get('/', (req, res) => {
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            let $ = cheerio.load(body);
+            let commitArr = [];
+            $('.commit-detail').map(function (idx, data) {
+                let commitMsg = $(data).find('.item-title').text();
+                let author = $(data).find('.commit-author-link').text();
+                let newData = {
+                    commitMsg,
+                    author,
+                };
+                if (!commitMsg.includes('Merge')) commitArr.push(newData);
+            });
+            res.send(commitArr);
+        }
+    });
+});
+module.exports = router;
