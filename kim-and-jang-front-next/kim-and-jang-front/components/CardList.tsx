@@ -1,6 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
+import { ICard, ICardList } from "@typings/db";
 
-const CardList = () => {
+interface Props {
+  cards: ICard[];
+}
+
+const CardList: FC<Props> = ({ cards }) => {
   return <div>CardList</div>;
 };
 

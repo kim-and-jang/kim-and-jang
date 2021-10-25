@@ -31,8 +31,8 @@ const Board = () => {
     <Layout>
       <BoardHeader />
       <h1>Board : {id}</h1>
-      {cardList.map((card: ICard) => (
-        <CardList key={card.id} card={card.cards} />
+      {cardList.map((card) => (
+        <CardList key={card.id} cards={card.cards} />
       ))}
 
       {/* <Card
