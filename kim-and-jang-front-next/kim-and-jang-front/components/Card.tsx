@@ -10,7 +10,11 @@ const cardStyle = {
 };
 
 const Card: FC<Props> = ({ card }) => {
-  return <div style={cardStyle}>card {card.title}</div>;
+  return (
+    <div style={cardStyle}>
+      card {card.title} {card.content}
+    </div>
+  );
 };
 
 export default Card;
